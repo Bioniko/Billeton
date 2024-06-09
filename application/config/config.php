@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'http://localhost/Base_Crud';
-$config['base_url'] = 'https://xiocuchillo.com/Billeton';
+$config['base_url'] = 'https://xiocuchillo.com';
 
 /*
 |--------------------------------------------------------------------------
