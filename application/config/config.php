@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/Base_Crud';
-//$config['base_url'] = 'https://4c0b-205-211-199-174.ngrok-free.app/Base_Crud';
+//$config['base_url'] = 'http://localhost/Base_Crud';
+$config['base_url'] = 'https://xiocuchillo.com/Billeton';
 
 /*
 |--------------------------------------------------------------------------
