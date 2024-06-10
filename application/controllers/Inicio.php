@@ -46,7 +46,7 @@ class Inicio extends CI_Controller {
 					session_start();
 					$_SESSION['log_id'] = $fila->log_id;
 					$_SESSION['Usuario'] = $usuario;
-					header("Location: ".base_url()."index.php/Login/Show");
+					header("Location: ".base_url()."index.php/Movimiento/Show");
 				}else{
 					header("Location: ".base_url()."index.php/Inicio?p=0");
 				}
