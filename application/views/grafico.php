@@ -55,7 +55,7 @@
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <span class="label label-primary pull-right">Mes</span>
+                                <span class="label label-primary pull-right">Mes actual</span>
                                 <h5>Ingresos</h5>
                             </div>
                             <div class="ibox-content">
@@ -74,7 +74,7 @@
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <span class="label label-danger pull-right">Low value</span>
+                                <span class="label label-danger pull-right">Mes actual</span>
                                 <h5>Egreso</h5>
                             </div>
                             <div class="ibox-content">
@@ -149,7 +149,7 @@
                     <div class="col-lg-4">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>Messages</h5>
+                                <h5>Movimientos</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -160,74 +160,53 @@
                                 </div>
                             </div>
                             <div class="ibox-content ibox-heading">
-                                <h3><i class="fa fa-envelope-o"></i> New messages</h3>
-                                <small><i class="fa fa-tim"></i> You have 22 new messages and 16 waiting in draft folder.</small>
+                                <h3><i class="fa-solid fa-money-bill-transfer"></i> Ultimos Movimientos</h3>
+                                <small><i class="fa fa-tim"></i> Los ultimos 7 movimientos del dia.</small>
                             </div>
                             <div class="ibox-content">
                                 <div class="feed-activity-list">
+                                    <?php
+                                    foreach ($ult as $ban) {
+                                        if($ban){
+                                            $fecha_str = $ban->mov_fecha;
+                                            $fecha_obj = DateTime::createFromFormat('Y-m-d H:i:s', $fecha_str);
+                                            $fecha = $fecha_obj->format('Y-m-d');
+                                            $hora = $fecha_obj->format('H:i:s');
+                                            $hora12 = date("g:i A", strtotime($hora));
+                                            $fecha_actual = new DateTime();
+                                            $fecha_anterior = new DateTime($fecha_str);
+                                            $intervalo = $fecha_actual->diff($fecha_anterior);
 
+                                            $minutos_pasados = $intervalo->days * 24 * 60; // Convertir días a minutos
+                                            $minutos_pasados += $intervalo->h * 60; // Convertir horas a minutos y añadir
+                                            $minutos_pasados += $intervalo->i; // Añadir minutos
+
+                                            if ($minutos_pasados == 0) {
+                                                $tiempo_pasado = "justo ahora";
+                                            } else if ($minutos_pasados < 60) {
+                                                $tiempo_pasado = "Hace ".$minutos_pasados . "minutos";
+                                            } else if ($minutos_pasados < 1440) { // Menos de un día
+                                                $horas_pasadas = floor($minutos_pasados / 60);
+                                                $tiempo_pasado = "Hace ".$horas_pasadas . "horas";
+                                            } else {
+                                                $dias_pasados = floor($minutos_pasados / 1440);
+                                                $tiempo_pasado = "Hace ".$dias_pasados . "dias";
+                                            }
+                                    ?>
                                     <div class="feed-element">
                                         <div>
-                                            <small class="pull-right text-navy">1m ago</small>
-                                            <strong>Monica Smith</strong>
-                                            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</div>
-                                            <small class="text-muted">Today 5:60 pm - 12.06.2014</small>
+                                            <small class="pull-right text-navy"><?php echo $tiempo_pasado;?></small>
+                                            <strong><?php echo $ban->icono." ".$ban->comercio;?></strong>
+                                            <div><?php echo $ban->mov_descripcion;?></div>
+                                            <div><?php echo "<strong>Monto</strong>: ".number_format($ban->mov_monto, 2)." Lps.";?></div>
+                                            <small class="text-muted"><?php echo $hora12." - ".$fecha;?></small>
+                                            <small class="pull-right text-navy"><?php if($ban->mov_tipo_movimiento == "0"){echo '<i class="fa fa-level-up"></i>';}else{echo '<i class="fa fa-level-down" style="color: #ed5565"></i>';}?></small>
                                         </div>
                                     </div>
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">2m ago</small>
-                                            <strong>Jogn Angel</strong>
-                                            <div>There are many variations of passages of Lorem Ipsum available</div>
-                                            <small class="text-muted">Today 2:23 pm - 11.06.2014</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Jesica Ocean</strong>
-                                            <div>Contrary to popular belief, Lorem Ipsum</div>
-                                            <small class="text-muted">Today 1:00 pm - 08.06.2014</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Monica Jackson</strong>
-                                            <div>The generated Lorem Ipsum is therefore </div>
-                                            <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Anna Legend</strong>
-                                            <div>All the Lorem Ipsum generators on the Internet tend to repeat </div>
-                                            <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Damian Nowak</strong>
-                                            <div>The standard chunk of Lorem Ipsum used </div>
-                                            <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Gary Smith</strong>
-                                            <div>200 Latin words, combined with a handful</div>
-                                            <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                                        </div>
-                                    </div>
-
+                                    <?php 
+                                        }
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>

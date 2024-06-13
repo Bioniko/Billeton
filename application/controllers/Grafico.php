@@ -36,7 +36,8 @@ class Grafico extends CI_Controller {
 			$cue = $this->db->query("SELECT SUM(CASE WHEN mov_tipo_movimiento = 0 THEN mov_monto ELSE 0 END) - SUM(CASE WHEN mov_tipo_movimiento = 1 THEN mov_monto ELSE 0 END) AS EfectivoTotal FROM movimiento WHERE log_id = ".$_COOKIE['log_id']." AND mov_tipo_pago = 1;")->row();
 			$ing = $this->db->query("SELECT SUM(mov_monto) FROM movimiento WHERE log_id = ".$_COOKIE['log_id']." AND mov_tipo_movimiento = 0 AND YEAR(mov_fecha) = YEAR(CURDATE()) AND MONTH(mov_fecha) = MONTH(CURDATE());")->row();
 			$egr = $this->db->query("SELECT SUM(mov_monto) FROM movimiento WHERE log_id = ".$_COOKIE['log_id']." AND mov_tipo_movimiento = 1 AND YEAR(mov_fecha) = YEAR(CURDATE()) AND MONTH(mov_fecha) = MONTH(CURDATE());")->row();
-			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr);
+			$ult = $this->db->query("SELECT m.*, c.com_nombre comercio, c.com_icono icono FROM movimiento m LEFT JOIN comercio c ON m.com_id = c.com_id where m.log_id = ".$_COOKIE['log_id']." ORDER BY m.mov_fecha DESC LIMIT 7;")->result();
+			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr, 'ult' => $ult);
 			$this->load->view('grafico.php',(array)$data);
 		}catch(Exception $e){
 			show_error($e->getMessage().' --- '.$e->getTraceAsString());
