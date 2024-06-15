@@ -248,7 +248,7 @@
                                                 <td><small><?php echo $fecha;?></small></td>
                                                 <td><?php echo number_format($dia->Egreso, 2);?></td>
                                                 <td><?php echo number_format($dia->Ingreso, 2);?></td>
-                                                <td class="text-navy"><?php echo number_format($dia->Monto, 2);?> 
+                                                <td class="text-navy" style="color: <?php if(number_format($dia->Monto, 2) < "0"){echo '#ed5565';}?>"><?php echo number_format($dia->Monto, 2);?> 
                                                 <?php if(number_format($dia->Monto, 2) >= "0"){echo '<i class="fa fa-level-up"></i>';}else{echo '<i class="fa fa-level-down" style="color: #ed5565"></i>';}?>
                                                 </td>
                                             </tr>
