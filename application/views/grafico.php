@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php include "head.php"; ?>
+<?php include "head.php";setlocale(LC_TIME, 'es_ES.UTF-8'); // Establece la configuración regional en español ?>
 </head>
 <body>
     <div id="wrapper">
@@ -218,7 +218,7 @@
                             <div class="col-lg-6">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>User project list</h5>
+                                        <h5>Gastos de la ultima semana</h5>
                                         <div class="ibox-tools">
                                             <a class="collapse-link">
                                                 <i class="fa fa-chevron-up"></i>
@@ -232,55 +232,30 @@
                                         <table class="table table-hover no-margins">
                                             <thead>
                                             <tr>
-                                                <th>Status</th>
-                                                <th>Date</th>
-                                                <th>User</th>
-                                                <th>Value</th>
+                                                <th>Dia</th>
+                                                <th>Egreso</th>
+                                                <th>Ingreso</th>
+                                                <th>Saldo</th>
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            <?php 
+                                            foreach ($dia as $dia) {
+                                                if($dia){
+                                                    $fecha = strftime('%A %d de %b', strtotime($dia->Dia));
+                                            ?>
                                             <tr>
-                                                <td><small>Pending...</small></td>
-                                                <td><i class="fa fa-clock-o"></i> 11:20pm</td>
-                                                <td>Samantha</td>
-                                                <td class="text-navy"> <i class="fa fa-level-up"></i> 24% </td>
+                                                <td><small><?php echo $fecha;?></small></td>
+                                                <td><?php echo number_format($dia->Egreso, 2);?></td>
+                                                <td><?php echo number_format($dia->Ingreso, 2);?></td>
+                                                <td class="text-navy"><?php echo number_format($dia->Monto, 2);?> 
+                                                <?php if(number_format($dia->Monto, 2) >= "0"){echo '<i class="fa fa-level-up"></i>';}else{echo '<i class="fa fa-level-down" style="color: #ed5565"></i>';}?>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td><span class="label label-warning">Canceled</span> </td>
-                                                <td><i class="fa fa-clock-o"></i> 10:40am</td>
-                                                <td>Monica</td>
-                                                <td class="text-navy"> <i class="fa fa-level-up"></i> 66% </td>
-                                            </tr>
-                                            <tr>
-                                                <td><small>Pending...</small> </td>
-                                                <td><i class="fa fa-clock-o"></i> 01:30pm</td>
-                                                <td>John</td>
-                                                <td class="text-navy"> <i class="fa fa-level-up"></i> 54% </td>
-                                            </tr>
-                                            <tr>
-                                                <td><small>Pending...</small> </td>
-                                                <td><i class="fa fa-clock-o"></i> 02:20pm</td>
-                                                <td>Agnes</td>
-                                                <td class="text-navy"> <i class="fa fa-level-up"></i> 12% </td>
-                                            </tr>
-                                            <tr>
-                                                <td><small>Pending...</small> </td>
-                                                <td><i class="fa fa-clock-o"></i> 09:40pm</td>
-                                                <td>Janet</td>
-                                                <td class="text-navy"> <i class="fa fa-level-up"></i> 22% </td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="label label-primary">Completed</span> </td>
-                                                <td><i class="fa fa-clock-o"></i> 04:10am</td>
-                                                <td>Amelia</td>
-                                                <td class="text-navy"> <i class="fa fa-level-up"></i> 66% </td>
-                                            </tr>
-                                            <tr>
-                                                <td><small>Pending...</small> </td>
-                                                <td><i class="fa fa-clock-o"></i> 12:08am</td>
-                                                <td>Damian</td>
-                                                <td class="text-navy"> <i class="fa fa-level-up"></i> 23% </td>
-                                            </tr>
+                                            <?php 
+                                                }
+                                            }
+                                            ?>
                                             </tbody>
                                         </table>
                                     </div>

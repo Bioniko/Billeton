@@ -3,6 +3,8 @@
 if($_SESSION['Usuario'] == NULL){
   header("Location: ".base_url()."index.php/Inicio");
 }
+// Establecer la configuración regional a español
+setlocale(LC_TIME, 'es_ES.UTF-8');
 ?>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

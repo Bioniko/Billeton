@@ -20,9 +20,15 @@
                     <li>
                         <a href="<?php echo base_url();?>index.php/Movimiento/Show"><i class="fa-solid fa-sack-dollar"></i> <span class="nav-label">Movimiento</span></a>
                     </li>
+                    <?php 
+                    if($_COOKIE['log_id'] == '3'){
+                    ?>
                     <li>
                         <a href="<?php echo base_url();?>index.php/Login/Show"><i class="fa-solid fa-right-to-bracket"></i> <span class="nav-label">Login</span></a>
                     </li>
+                    <?php 
+                    }
+                    ?>
                 </ul>
 
             </div>

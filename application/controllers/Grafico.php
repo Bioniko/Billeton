@@ -37,7 +37,21 @@ class Grafico extends CI_Controller {
 			$ing = $this->db->query("SELECT SUM(mov_monto) FROM movimiento WHERE log_id = ".$_COOKIE['log_id']." AND mov_tipo_movimiento = 0 AND YEAR(mov_fecha) = YEAR(CURDATE()) AND MONTH(mov_fecha) = MONTH(CURDATE());")->row();
 			$egr = $this->db->query("SELECT SUM(mov_monto) FROM movimiento WHERE log_id = ".$_COOKIE['log_id']." AND mov_tipo_movimiento = 1 AND YEAR(mov_fecha) = YEAR(CURDATE()) AND MONTH(mov_fecha) = MONTH(CURDATE());")->row();
 			$ult = $this->db->query("SELECT m.*, c.com_nombre comercio, c.com_icono icono FROM movimiento m LEFT JOIN comercio c ON m.com_id = c.com_id where m.log_id = ".$_COOKIE['log_id']." ORDER BY m.mov_fecha DESC LIMIT 7;")->result();
-			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr, 'ult' => $ult);
+			$dia = $this->db->query("SELECT 
+										DATE(mov_fecha) AS Dia,
+										SUM(CASE WHEN mov_tipo_movimiento = 1 THEN mov_monto ELSE 0 END) AS Egreso,
+										SUM(CASE WHEN mov_tipo_movimiento = 0 THEN mov_monto ELSE 0 END) AS Ingreso,
+										SUM(CASE WHEN mov_tipo_movimiento = 0 THEN mov_monto ELSE 0 END) - 
+										SUM(CASE WHEN mov_tipo_movimiento = 1 THEN mov_monto ELSE 0 END) AS Monto
+									FROM 
+										movimiento
+									WHERE 
+										mov_fecha >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND log_id = ".$_COOKIE['log_id']."
+									GROUP BY 
+										DATE(mov_fecha)
+									ORDER BY 
+										DATE(mov_fecha) DESC")->result();
+			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr, 'ult' => $ult, 'dia' => $dia);
 			$this->load->view('grafico.php',(array)$data);
 		}catch(Exception $e){
 			show_error($e->getMessage().' --- '.$e->getTraceAsString());
