@@ -51,7 +51,22 @@ class Grafico extends CI_Controller {
 										DATE(mov_fecha)
 									ORDER BY 
 										DATE(mov_fecha) DESC")->result();
-			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr, 'ult' => $ult, 'dia' => $dia);
+			$gpc = $this->db->query("SELECT 
+											CONCAT(c.com_nombre) AS comercios, 
+											SUM(m.mov_monto) AS total
+										FROM 
+											movimiento m
+										JOIN 
+											comercio c ON m.com_id = c.com_id
+										WHERE 
+											m.mov_fecha >= DATE_FORMAT(CURDATE() ,'%Y-%m-01')
+											AND m.log_id = ".$_COOKIE['log_id']."
+											AND m.mov_tipo_movimiento = 1
+										GROUP BY 
+											comercios
+										ORDER BY 
+											total DESC")->result();
+			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr, 'ult' => $ult, 'dia' => $dia, 'gpc' => $gpc);
 			$this->load->view('grafico.php',(array)$data);
 		}catch(Exception $e){
 			show_error($e->getMessage().' --- '.$e->getTraceAsString());
