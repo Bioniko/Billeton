@@ -89,7 +89,7 @@
                 }
                 ?>
         </div>
-        <div class="row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
@@ -103,47 +103,14 @@
                                 </div>
                             </div>
                             <div class="ibox-content">
-                                <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="flot-chart">
-                                        <textarea style="display:none" id="chartinfo"><?php echo json_encode($gpc); ?></textarea>
-                                        <div class="flot-chart-content" id="ciudadChart"></div>
-                                    </div>
+                                <div class="flot-chart">
+                                    <textarea style="display:none" id="chartinfo"><?php echo json_encode($gpc); ?></textarea>
+                                    <div class="flot-chart-content" id="ciudadChart"></div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <ul class="stat-list">
-                                        <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
-                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 48%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
-                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 60%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
-                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 22%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
+                </div>
 
 
                 <div class="row">
@@ -1020,7 +987,7 @@
             // Options 
             var options = {
                 title:'Reporte gasto por comercio',
-                colors: ['#4473c5']
+                colors: ['#28bebd']
             };
 
             // Initialize 
