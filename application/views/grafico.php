@@ -80,7 +80,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <span class="label label-danger pull-right">Mes actual</span>
-                                <h5>Egreso</h5>
+                                <h5>Egresos</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins"><?php echo number_format($egr, 2)." Lps";?></h1>
@@ -103,7 +103,7 @@
                             <div class="ibox-content">
                                 <h1 class="no-margins"><?php echo number_format($total_gasto, 2)." Lps";?></h1>
                                 <div class="stat-percent font-bold <?php if($total_gasto < 0){echo "text-danger";}else{echo "text-navy";}?>"><i class="fa fa-level-<?php if($total_gasto < 0){echo "down";}else{echo "up";}?>"></i></div>
-                                <small>Ingresos - Egreso</small>
+                                <small>Ingresos - Egresos</small>
                             </div>
                         </div>
                     </div>
