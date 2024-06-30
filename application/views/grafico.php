@@ -992,7 +992,7 @@
             // Options 
             var options = {
             title: 'Comercios',
-            pieHole: 0.1,
+            pieHole: 0.4,
             };
 
             // Initialize 
