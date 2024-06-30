@@ -236,39 +236,10 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content">
-                                        <ul class="todo-list m-t small-list">
-                                            <li>
-                                                <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a>
-                                                <span class="m-l-xs todo-completed">Buy a milk</span>
-
-                                            </li>
-                                            <li>
-                                                <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                                <span class="m-l-xs">Go to shop and find some products.</span>
-
-                                            </li>
-                                            <li>
-                                                <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                                <span class="m-l-xs">Send documents to Mike</span>
-                                                <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 mins</small>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                                <span class="m-l-xs">Go to the doctor dr Smith</span>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a>
-                                                <span class="m-l-xs todo-completed">Plan vacation</span>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                                <span class="m-l-xs">Create new stuff</span>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                                <span class="m-l-xs">Call to Anna for dinner</span>
-                                            </li>
-                                        </ul>
+                                        <div class="flot-chart">
+                                            <textarea style="display:none" id="chartinfo2"><?php echo json_encode($gp7); ?></textarea>
+                                            <div class="flot-chart-content" id="ciudadChart2"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -985,6 +956,47 @@
 
             // Initialize 
             var chart = new google.visualization.ColumnChart(document.getElementById('ciudadChart'));
+            chart.draw(data, options);
+            
+        }
+
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart2);
+
+        function drawChart2() {
+
+            var chartData_json = document.getElementById('chartinfo2').value;
+
+            let obj = JSON.parse(chartData_json) ; 
+            let jsonData = obj;
+            var chartData = [];
+            
+            // Add Chart data
+            var chartData = [
+            ['comercios','total',{ role: 'annotation'}],
+            ];
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    var val = obj[key];
+
+                    var comercios = val.comercios;
+                    var total = Number(val.total);
+
+                    // Add to Array
+                    chartData.push([comercios,total,total]);
+                    
+                }
+            } 
+            var data = google.visualization.arrayToDataTable(chartData);
+
+            // Options 
+            var options = {
+            title: 'My Daily Activities',
+            pieHole: 0.4,
+            };
+
+            // Initialize 
+            var chart = new google.visualization.PieChart(document.getElementById('ciudadChart2'));
             chart.draw(data, options);
             
         }

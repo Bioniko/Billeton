@@ -52,21 +52,34 @@ class Grafico extends CI_Controller {
 									ORDER BY 
 										DATE(mov_fecha) DESC")->result();
 			$gpc = $this->db->query("SELECT 
-											CONCAT(c.com_nombre) AS comercios, 
-											SUM(m.mov_monto) AS total
-										FROM 
-											movimiento m
-										JOIN 
-											comercio c ON m.com_id = c.com_id
-										WHERE 
-											m.mov_fecha >= DATE_FORMAT(CURDATE() ,'%Y-%m-01')
-											AND m.log_id = ".$_COOKIE['log_id']."
-											AND m.mov_tipo_movimiento = 1
-										GROUP BY 
-											comercios
-										ORDER BY 
-											total DESC")->result();
-			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr, 'ult' => $ult, 'dia' => $dia, 'gpc' => $gpc);
+										CONCAT(c.com_nombre) AS comercios, 
+										SUM(CASE WHEN m.mov_tipo_movimiento = 1 THEN m.mov_monto ELSE -m.mov_monto END) AS total
+									FROM 
+										movimiento m
+									JOIN 
+										comercio c ON m.com_id = c.com_id
+									WHERE 
+										m.mov_fecha >= DATE_FORMAT(CURDATE(), '%Y-%m-01')
+										AND m.log_id = ".$_COOKIE['log_id']."
+									GROUP BY 
+										comercios
+									ORDER BY 
+										total DESC")->result();
+			$gp7 = $this->db->query("SELECT 
+										CONCAT(c.com_nombre) AS comercios, 
+										SUM(CASE WHEN m.mov_tipo_movimiento = 1 THEN m.mov_monto ELSE -m.mov_monto END) AS total
+									FROM 
+										movimiento m
+									JOIN 
+										comercio c ON m.com_id = c.com_id
+									WHERE 
+										m.mov_fecha >= DATE_FORMAT(CURDATE(), '%Y-%m-01')
+										AND m.log_id = ".$_COOKIE['log_id']."
+									GROUP BY 
+										comercios
+									ORDER BY 
+										total DESC LIMIT 7")->result();
+			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr, 'ult' => $ult, 'dia' => $dia, 'gpc' => $gpc, 'gp7' => $gp7);
 			$this->load->view('grafico.php',(array)$data);
 		}catch(Exception $e){
 			show_error($e->getMessage().' --- '.$e->getTraceAsString());
