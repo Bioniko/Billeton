@@ -53,7 +53,7 @@ class Grafico extends CI_Controller {
 										DATE(mov_fecha) DESC")->result();
 			$gpc = $this->db->query("SELECT 
 										CONCAT(c.com_nombre) AS comercios, 
-										SUM(CASE WHEN m.mov_tipo_movimiento = 0 THEN m.mov_monto ELSE -m.mov_monto END) AS total
+										SUM(CASE WHEN m.mov_tipo_movimiento = 1 THEN m.mov_monto ELSE -m.mov_monto END) AS total
 									FROM 
 										movimiento m
 									JOIN 
@@ -63,8 +63,10 @@ class Grafico extends CI_Controller {
 										AND m.log_id = ".$_COOKIE['log_id']."
 									GROUP BY 
 										comercios
+									HAVING 
+										total > 0
 									ORDER BY 
-										total DESC LIMIT 10")->result();
+										total DESC")->result();
 			$gp7 = $this->db->query("SELECT 
 										CONCAT(c.com_nombre) AS comercios, 
 										SUM(CASE WHEN m.mov_tipo_movimiento = 1 THEN m.mov_monto ELSE -m.mov_monto END) AS total
