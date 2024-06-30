@@ -53,7 +53,7 @@ class Grafico extends CI_Controller {
 										DATE(mov_fecha) DESC")->result();
 			$gpc = $this->db->query("SELECT 
 										CONCAT(c.com_nombre) AS comercios, 
-										SUM(CASE WHEN m.mov_tipo_movimiento = 1 THEN m.mov_monto ELSE -m.mov_monto END) AS total
+										SUM(CASE WHEN m.mov_tipo_movimiento = 0 THEN m.mov_monto ELSE -m.mov_monto END) AS total
 									FROM 
 										movimiento m
 									JOIN 
