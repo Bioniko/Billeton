@@ -11,6 +11,9 @@
         <div class="wrapper wrapper-content">
         <div class="row">
                 <?php 
+                $total_gasto = 0;
+                $egresos = 0;
+                $ingresos = 0;
                 foreach ($efe as $efe) {
                     if($efe){
                 ?>
@@ -51,6 +54,7 @@
                 }
                 foreach ($ing as $ing) {
                     if($ing){
+                        $ingresos = floatval($ing);
                 ?>
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
@@ -70,6 +74,7 @@
                 }
                 foreach ($egr as $egr) {
                     if($egr){
+                        $egresos = floatval($egr);
                 ?>
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
@@ -87,7 +92,21 @@
                 <?php 
                     }
                 }
+                $total_gasto = floatval($ingresos) -  floatval($egresos);
                 ?>
+                <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <span class="label <?php if($total_gasto < 0){echo "label-danger";}else{echo "label-primary";}?> pull-right">Total</span>
+                                <h5>Total Gastos del Mes</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins"><?php echo number_format($total_gasto, 2)." Lps";?></h1>
+                                <div class="stat-percent font-bold <?php if($total_gasto < 0){echo "text-danger";}else{echo "text-navy";}?>"><i class="fa fa-level-<?php if($total_gasto < 0){echo "down";}else{echo "up";}?>"></i></div>
+                                <small>Ingresos - Egreso</small>
+                            </div>
+                        </div>
+                    </div>
         </div>
                 <div class="row">
                     <div class="col-lg-12">
