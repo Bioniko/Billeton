@@ -225,7 +225,7 @@
                             <div class="col-lg-6">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Small todo list</h5>
+                                        <h5>7 Gastos por Comercios</h5>
                                         <div class="ibox-tools">
                                             <a class="collapse-link">
                                                 <i class="fa fa-chevron-up"></i>
@@ -991,8 +991,8 @@
 
             // Options 
             var options = {
-            title: 'My Daily Activities',
-            pieHole: 0.4,
+            title: 'Comercios',
+            pieHole: 0.1,
             };
 
             // Initialize 
