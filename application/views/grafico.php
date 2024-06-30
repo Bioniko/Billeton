@@ -225,7 +225,7 @@
                             <div class="col-lg-6">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>7 Gastos por Comercios</h5>
+                                        <h5>7 Comercios que mas Gastas</h5>
                                         <div class="ibox-tools">
                                             <a class="collapse-link">
                                                 <i class="fa fa-chevron-up"></i>
@@ -244,87 +244,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-title">
-                                        <h5>Transactions worldwide</h5>
-                                        <div class="ibox-tools">
-                                            <a class="collapse-link">
-                                                <i class="fa fa-chevron-up"></i>
-                                            </a>
-                                            <a class="close-link">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="ibox-content">
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <table class="table table-hover margin bottom">
-                                                    <thead>
-                                                    <tr>
-                                                        <th style="width: 1%" class="text-center">No.</th>
-                                                        <th>Transaction</th>
-                                                        <th class="text-center">Date</th>
-                                                        <th class="text-center">Amount</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td class="text-center">1</td>
-                                                        <td> Security doors
-                                                            </td>
-                                                        <td class="text-center small">16 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-primary">$483.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">2</td>
-                                                        <td> Wardrobes
-                                                        </td>
-                                                        <td class="text-center small">10 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-primary">$327.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">3</td>
-                                                        <td> Set of tools
-                                                        </td>
-                                                        <td class="text-center small">12 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-warning">$125.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">4</td>
-                                                        <td> Panoramic pictures</td>
-                                                        <td class="text-center small">22 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$344.00</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">5</td>
-                                                        <td>Phones</td>
-                                                        <td class="text-center small">24 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$235.00</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">6</td>
-                                                        <td>Monitors</td>
-                                                        <td class="text-center small">26 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$100.00</span></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div id="world-map" style="height: 300px;"></div>
-                                            </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
 
@@ -332,12 +251,7 @@
                 </div>
                 </div>
         <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
-            </div>
+            
         </div>
         </div>
         <div id="right-sidebar">
