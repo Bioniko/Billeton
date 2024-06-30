@@ -79,6 +79,8 @@ class Grafico extends CI_Controller {
 										AND m.log_id = ".$_COOKIE['log_id']."
 									GROUP BY 
 										comercios
+									HAVING 
+										total > 0
 									ORDER BY 
 										total DESC LIMIT 7")->result();
 			$data = (object)array('efe' => $efe, 'cue' => $cue, 'ing' => $ing, 'egr' => $egr, 'ult' => $ult, 'dia' => $dia, 'gpc' => $gpc, 'gp7' => $gp7);
