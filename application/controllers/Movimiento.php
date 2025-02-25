@@ -48,6 +48,7 @@ class Movimiento extends CI_Controller {
 			$crud->display_as('mov_fecha','Fecha');
 			//WHERE
 			$crud->where('movimiento.log_id', $_COOKIE['log_id']);
+			$crud->order_by('mov_fecha','desc');
 			//THEME
 			$crud->set_theme('flexigrid');
 			//TABLA A LEER
