@@ -32,9 +32,7 @@ class Reporte extends CI_Controller {
 	public function show()
 	{
 		try{
-			if(isset($_GET['desde']) && !Empty($_GET['desde']) 
-			&& isset($_GET['hasta']) && !Empty($_GET['hasta'])
-			&& isset($_GET['tpago']) && !Empty($_GET['tpago']))
+			if(isset($_GET['desde']) && !Empty($_GET['desde']))
 			{
 				$gpc = $this->db->query("SELECT 
 											CONCAT(c.com_nombre) AS comercios, 
