@@ -67,7 +67,8 @@ class Movimiento extends CI_Controller {
 			$crud->field_type(
 			'mov_tipo_pago','dropdown', array(
 				'0' => 'Efectivo', 
-				'1' => 'Cuenta Banco'
+				'1' => 'Cuenta Banco',
+				'2' => 'Tarjeta de Credito'
 			));
 			//Set Relation
 			$crud->set_relation('com_id', 'comercio', 'com_nombre',array('log_id' => $_COOKIE['log_id']));

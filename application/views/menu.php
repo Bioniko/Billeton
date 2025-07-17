@@ -20,6 +20,9 @@
                     <li>
                         <a href="<?php echo base_url();?>index.php/Movimiento/Show"><i class="fa-solid fa-sack-dollar"></i> <span class="nav-label">Movimiento</span></a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url();?>index.php/Reporte/Show"><i class="fa-solid fa-chart-simple"></i> <span class="nav-label">Reporte de Gastos</span></a>
+                    </li>
                     <?php 
                     if($_COOKIE['log_id'] == '3'){
                     ?>
